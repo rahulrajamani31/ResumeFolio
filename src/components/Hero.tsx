@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ArrowDown, Mail } from "lucide-react";
-import { GitHubIcon, LinkedInIcon } from "./icons";
+import { motion } from 'framer-motion';
+import { ArrowDown, Mail } from 'lucide-react';
+import { GitHubIcon, LinkedInIcon } from './icons';
 
 export default function Hero() {
   return (
@@ -16,8 +16,8 @@ export default function Hero() {
           className="w-full h-full"
           style={{
             backgroundImage:
-              "linear-gradient(#0a0a0a 1px, transparent 1px), linear-gradient(90deg, #0a0a0a 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
+              'linear-gradient(#0a0a0a 1px, transparent 1px), linear-gradient(90deg, #0a0a0a 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
           }}
         />
       </div>
@@ -25,19 +25,19 @@ export default function Hero() {
       {/* Decorative Elements */}
       <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         className="absolute top-20 right-10 md:right-32 w-24 h-24 md:w-40 md:h-40 brutal-border bg-brutal-yellow opacity-60"
       />
       <motion.div
         animate={{ rotate: -360 }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
         className="absolute bottom-32 left-10 md:left-20 w-16 h-16 md:w-28 md:h-28 brutal-border bg-brutal-pink opacity-40 rounded-full"
       />
       <motion.div
         animate={{ y: [-10, 10, -10] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-40 left-1/4 w-12 h-12 brutal-border bg-brutal-blue opacity-30"
-        style={{ transform: "rotate(45deg)" }}
+        style={{ transform: 'rotate(45deg)' }}
       />
 
       <div className="max-w-7xl mx-auto px-6 pt-32 pb-20 relative z-10">
@@ -89,15 +89,12 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="max-w-2xl text-lg md:text-xl font-body leading-relaxed mb-10 text-brutal-dark"
           >
-            2+ years at{" "}
+            Software Engineer at{' '}
             <span className="font-bold underline decoration-brutal-yellow decoration-4 underline-offset-4">
               Siemens Healthineers
-            </span>{" "}
-            building internal tooling, automation frameworks, and DevOps pipelines. 
-            MERN platform serving{" "}
-            <span className="font-bold bg-brutal-yellow px-1">100+ daily users</span>.
-            Automated{" "}
-            <span className="font-bold bg-brutal-green px-1">150+ test cases</span>.
+            </span>{' '}
+            — shipping real tools, cutting real effort, heading toward{' '}
+            <span className="font-bold bg-brutal-blue text-brutal-white px-1">DevOps & Cloud</span>.
           </motion.p>
 
           {/* CTA Buttons & Social */}
@@ -148,7 +145,10 @@ export default function Hero() {
         transition={{ duration: 1.5, repeat: Infinity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <a href="#about" className="flex flex-col items-center gap-2 font-mono text-xs uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
+        <a
+          href="#about"
+          className="flex flex-col items-center gap-2 font-mono text-xs uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
+        >
           <span>Scroll</span>
           <ArrowDown size={16} />
         </a>
@@ -158,8 +158,9 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 bg-brutal-black text-brutal-white py-3 overflow-hidden">
         <div className="marquee whitespace-nowrap">
           <span className="font-mono text-sm tracking-widest">
-            AUTOMATION ● DEVOPS ● CLOUD ● MERN STACK ● CI/CD ● DOCKER ● KUBERNETES ● AZURE ● JAVA ● SELENIUM ● REACT ● NODE.JS ● 
-            AUTOMATION ● DEVOPS ● CLOUD ● MERN STACK ● CI/CD ● DOCKER ● KUBERNETES ● AZURE ● JAVA ● SELENIUM ● REACT ● NODE.JS ● 
+            AUTOMATION ● DEVOPS ● CLOUD ● MERN STACK ● CI/CD ● DOCKER ● KUBERNETES ● AZURE ● JAVA ●
+            SELENIUM ● REACT ● NODE.JS ● AUTOMATION ● DEVOPS ● CLOUD ● MERN STACK ● CI/CD ● DOCKER ●
+            KUBERNETES ● AZURE ● JAVA ● SELENIUM ● REACT ● NODE.JS ●
           </span>
         </div>
       </div>

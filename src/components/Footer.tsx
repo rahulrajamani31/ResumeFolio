@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Mail, Heart } from "lucide-react";
-import { GitHubIcon, LinkedInIcon } from "./icons";
+import { Mail, Heart } from 'lucide-react';
+import { GitHubIcon, LinkedInIcon } from './icons';
 
 export default function Footer() {
   return (
@@ -10,8 +10,8 @@ export default function Footer() {
       <div className="overflow-hidden py-4 bg-brutal-yellow text-brutal-black">
         <div className="marquee-reverse whitespace-nowrap">
           <span className="font-display font-black text-2xl uppercase tracking-tighter">
-            AVAILABLE FOR OPPORTUNITIES ● DEVOPS ● CLOUD ENGINEERING ● FULL-STACK ● AUTOMATION ● 
-            AVAILABLE FOR OPPORTUNITIES ● DEVOPS ● CLOUD ENGINEERING ● FULL-STACK ● AUTOMATION ● 
+            AVAILABLE FOR OPPORTUNITIES ● DEVOPS ● CLOUD ENGINEERING ● FULL-STACK ● AUTOMATION ●
+            AVAILABLE FOR OPPORTUNITIES ● DEVOPS ● CLOUD ENGINEERING ● FULL-STACK ● AUTOMATION ●
           </span>
         </div>
       </div>
@@ -30,17 +30,15 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-wrap gap-4 justify-center">
-            {["Home", "About", "Skills", "Experience", "Projects", "Contact"].map(
-              (link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className="font-mono text-xs uppercase tracking-wider text-brutal-gray hover:text-brutal-yellow transition-colors"
-                >
-                  {link}
-                </a>
-              )
-            )}
+            {['Home', 'About', 'Skills', 'Experience', 'Projects', 'Contact'].map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                className="font-mono text-xs uppercase tracking-wider text-brutal-gray hover:text-brutal-yellow transition-colors"
+              >
+                {link}
+              </a>
+            ))}
           </div>
 
           {/* Social */}
@@ -73,7 +71,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-brutal-gray/20 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-mono text-xs text-brutal-gray flex items-center gap-1">
-            Built with <Heart size={12} className="text-brutal-pink" /> using Next.js & Brutalism Design
+            Built with <Heart size={12} className="text-brutal-pink" />
           </p>
           <p className="font-mono text-xs text-brutal-gray">
             © {new Date().getFullYear()} Rahul R. All rights reserved.
