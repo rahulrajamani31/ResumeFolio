@@ -1,177 +1,149 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { Monitor, Server, Cloud, TestTube, Database, Container } from 'lucide-react';
 
 const skillCategories = [
   {
-    title: "DevOps & Cloud",
-    color: "bg-brutal-blue",
-    textColor: "text-brutal-white",
-    skills: [
-      "Azure DevOps",
-      "CI/CD Pipelines",
-      "Docker",
-      "Kubernetes",
-      "Azure Cloud",
-      "YAML",
-      "Linux",
-      "Git / GitHub",
+    name: 'Frontend',
+    icon: Monitor,
+    color: 'border-blue-500/30',
+    accent: 'text-blue-400',
+    items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'HTML/CSS'],
+  },
+  {
+    name: 'Backend',
+    icon: Server,
+    color: 'border-green-500/30',
+    accent: 'text-green-400',
+    items: [
+      'Node.js',
+      'Express.js',
+      'REST APIs',
+      'Python',
+      'JWT Auth',
+      'WebSockets',
+      'Microservices',
     ],
   },
   {
-    title: "Full-Stack",
-    color: "bg-brutal-pink",
-    textColor: "text-brutal-white",
-    skills: [
-      "React.js",
-      "Next.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
+    name: 'DevOps',
+    icon: Container,
+    color: 'border-purple-500/30',
+    accent: 'text-purple-400',
+    items: [
+      'Docker',
+      'Kubernetes',
+      'GitHub Actions',
+      'Azure DevOps',
+      'CI/CD',
+      'Terraform',
+      'Shell Scripting',
     ],
   },
   {
-    title: "Automation",
-    color: "bg-brutal-yellow",
-    textColor: "text-brutal-black",
-    skills: [
-      "Java",
-      "Selenium",
-      "TestNG",
-      "Azure Pipelines",
-      "Regression Testing",
-      "Smoke Testing",
-      "REST APIs",
-      "Postman",
+    name: 'Cloud',
+    icon: Cloud,
+    color: 'border-orange-500/30',
+    accent: 'text-orange-400',
+    items: [
+      'Azure',
+      'AKS',
+      'Azure Functions',
+      'App Service',
+      'Azure Monitor',
+      'Container Registry',
+      'Key Vault',
+      'Blob Storage',
     ],
   },
   {
-    title: "Other",
-    color: "bg-brutal-green",
-    textColor: "text-brutal-black",
-    skills: [
-      "Python",
-      "Networking",
-      "Infrastructure Planning",
-      "Deployment Strategy",
-      "Containerization",
-      "Release Workflows",
-      "Analytics",
-      "PDF Reporting",
+    name: 'Testing',
+    icon: TestTube,
+    color: 'border-cyan-500/30',
+    accent: 'text-cyan-400',
+    items: [
+      'Jest',
+      'React Testing Library',
+      'Cypress',
+      'Selenium',
+      'Postman',
+      'Unit Testing',
+      'Integration Testing',
+      'E2E Testing',
     ],
+  },
+  {
+    name: 'Databases',
+    icon: Database,
+    color: 'border-pink-500/30',
+    accent: 'text-pink-400',
+    items: ['MongoDB', 'Redis', 'CosmosDB', 'Mongoose'],
   },
 ];
 
 export default function Skills() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="skills" className="py-24 bg-brutal-white relative" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="skills" className="relative py-24 lg:py-32 bg-dark-100/50">
+      <div className="absolute inset-0 bg-grid opacity-30" />
+      <div className="section-container relative z-10" ref={ref}>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <h2 className="section-title mb-4">
-            SKILLS<span className="text-brutal-pink">.</span>
-          </h2>
-          <div className="w-32 h-2 bg-brutal-blue mb-12" />
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-12 bg-accent" />
+            <span className="text-accent font-mono text-sm">06. Skills</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-surface">Technology Arsenal</h2>
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {skillCategories.map((category, catIndex) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {skillCategories.map((cat, i) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: catIndex * 0.15 }}
-              className="brutal-border brutal-shadow bg-brutal-white overflow-hidden"
+              key={cat.name}
+              initial={{ opacity: 0, y: 25 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
+              className={`glass rounded-xl overflow-hidden glow-border-hover transition-all duration-300 hover:-translate-y-1 border ${cat.color}`}
             >
-              {/* Category Header */}
-              <div
-                className={`${category.color} ${category.textColor} px-6 py-4 brutal-border border-t-0 border-l-0 border-r-0`}
-              >
-                <h3 className="font-display font-bold text-xl uppercase tracking-tight">
-                  {category.title}
-                </h3>
+              {/* Terminal-style header */}
+              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/5 bg-dark-200/30">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-red-500/60" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+                  <div className="w-2 h-2 rounded-full bg-green-500/60" />
+                </div>
+                <div className="flex items-center gap-2 ml-2">
+                  <cat.icon size={13} className={cat.accent} />
+                  <span className="text-xs font-mono text-muted">{cat.name.toLowerCase()}/</span>
+                </div>
               </div>
 
-              {/* Skills Tags */}
-              <div className="p-6 flex flex-wrap gap-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{
-                      duration: 0.3,
-                      delay: catIndex * 0.15 + skillIndex * 0.05,
-                    }}
-                    className="brutal-border px-4 py-2 font-mono text-sm font-bold hover:bg-brutal-yellow hover:-translate-y-1 transition-all cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+              {/* Skills */}
+              <div className="p-4">
+                <div className="flex flex-wrap gap-2">
+                  {cat.items.map((skill, j) => (
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ delay: 0.3 + i * 0.05 + j * 0.03, duration: 0.3 }}
+                      className="px-3 py-1.5 text-xs font-mono text-surface/80 bg-dark-200/60 rounded-md border border-white/5 hover:border-accent/30 hover:text-accent cursor-default transition-all duration-200"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Certifications Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-12 brutal-border brutal-shadow bg-brutal-dark text-brutal-white p-8"
-        >
-          <h3 className="font-display font-bold text-xl uppercase tracking-tight mb-6 text-brutal-yellow">
-            Certifications
-          </h3>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              {
-                name: "AZ-900: Azure Fundamentals",
-                org: "Microsoft",
-                status: "In Progress",
-              },
-              {
-                name: "Problem Solving",
-                org: "HackerRank",
-                status: "Completed",
-              },
-              {
-                name: "Introduction to Networking",
-                org: "CISCO",
-                status: "Completed",
-              },
-            ].map((cert) => (
-              <div
-                key={cert.name}
-                className="brutal-border border-brutal-gray/30 p-4 bg-brutal-black/50"
-              >
-                <p className="font-bold text-sm mb-1">{cert.name}</p>
-                <p className="font-mono text-xs text-brutal-gray">{cert.org}</p>
-                <span
-                  className={`inline-block mt-2 px-2 py-1 font-mono text-xs font-bold brutal-border ${
-                    cert.status === "In Progress"
-                      ? "bg-brutal-orange text-brutal-black"
-                      : "bg-brutal-green text-brutal-black"
-                  }`}
-                >
-                  {cert.status}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

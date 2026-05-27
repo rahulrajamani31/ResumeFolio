@@ -1,6 +1,7 @@
-export function GitHubIcon({ size = 20, className = "" }: { size?: number; className?: string }) {
+export function GithubIcon({ size = 24, className = '' }: { size?: number; className?: string }) {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
       viewBox="0 0 24 24"
@@ -12,9 +13,10 @@ export function GitHubIcon({ size = 20, className = "" }: { size?: number; class
   );
 }
 
-export function LinkedInIcon({ size = 20, className = "" }: { size?: number; className?: string }) {
+export function LinkedinIcon({ size = 24, className = '' }: { size?: number; className?: string }) {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
       viewBox="0 0 24 24"

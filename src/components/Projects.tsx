@@ -1,124 +1,143 @@
-'use client';
-
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Zap } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+import { CheckCircle, GitBranch } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Pipeline Management Platform',
-    date: 'Jul 2025 – Present',
+    title: 'CI/CD Pipeline Architecture',
     description:
-      'Centralized app managing 30+ pipelines across teams with execution, scheduling, monitoring, analytics, and PDF reporting — preventing accidental modifications and improving governance.',
-    longDescription:
-      'Identified a major operational challenge where multiple projects shared the same Azure DevOps instance, causing usability issues. Built an end-to-end MERN stack solution that enabled users to execute pipelines, schedule runs, monitor results, download PDF reports, and view analytics from a centralized interface.',
-    stack: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Azure DevOps REST API', 'Azure Cloud'],
-    color: 'bg-brutal-blue',
-    impact: ['100+ daily users', '30+ pipelines managed', '~90% effort reduction'],
-    featured: true,
+      'Designed end-to-end CI/CD pipeline and cloud deployment architecture using Docker and Azure, covering build automation, environment management, and release workflows.',
+    image: null,
+    tech: ['Docker', 'Kubernetes', 'Azure', 'MongoDB'],
+    status: 'Production',
+    architecture: ['React UI', 'API Gateway', 'Microservices', 'K8s Cluster', 'Azure Cloud'],
   },
   {
-    title: 'CI/CD Architecture – MERN Application',
-    date: 'Mar 2026 – Present',
+    title: 'Pipeline Management Platform',
     description:
-      'Designed end-to-end CI/CD pipeline and cloud deployment architecture for the Pipeline Management application using Docker and Azure.',
-    longDescription:
-      'Planned CI/CD workflows, deployment strategies, infrastructure management concepts, and scalable hosting approaches. Covers build automation, environment management, and release workflows.',
-    stack: ['Azure DevOps', 'Docker', 'Kubernetes', 'Linux', 'Azure Cloud', 'YAML', 'Git'],
-    color: 'bg-brutal-orange',
-    impact: ['End-to-end automation', 'Docker containerized', 'Multi-env support'],
-    featured: true,
+      'Centralized app managing 30+ pipelines across teams with execution, scheduling, monitoring, analytics, and PDF reporting — preventing accidental modifications and improving governance.',
+    image: null,
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+    status: 'Production',
+    architecture: [
+      'Next.js App',
+      'REST API',
+      'GitHub Webhooks',
+      'MongoDB Atlas',
+      'PDF Generation Service',
+    ],
+  },
+  {
+    title: 'Ooru Connect - Real-time Chat App',
+    description:
+      'Ooru Connect is a community-driven platform designed to connect people with their hometown, local communities, businesses, events, and opportunities in one digital space. The platform focuses on building meaningful local connections by helping users discover services, share updates, network with people, and stay engaged with their “ooru” (native place/community) from anywhere.',
+    image: null,
+    tech: ['React', 'Node.js', 'MongoDB', 'Api Gateway', 'Socket.IO'],
+    status: 'Staging',
+    architecture: [
+      'React Client',
+      'API Gateway',
+      'Node.js Services',
+      'MongoDB Atlas',
+      'Socket.IO Real-time',
+    ],
   },
   {
     title: 'Drag-and-Drop Website Builder',
-    date: 'Feb 2024 – May 2024',
     description:
-      'Dynamic page builder with real-time layout editing and reusable component architecture using Next.js and Puck Editor.',
-    longDescription:
-      'Built an application that allows users to dynamically create and customize web pages using reusable components and real-time editing capabilities. Also designed the CI/CD pipeline architecture for this project.',
-    stack: ['Next.js', 'React.js', 'Puck Editor', 'TypeScript', 'Tailwind CSS'],
-    color: 'bg-brutal-pink',
-    impact: ['Real-time editing', 'Drag & Drop UI', 'Reusable components'],
-    featured: false,
+      'Intuitive drag-and-drop website builder enabling users to create responsive websites without coding. Features include customizable templates, real-time preview, and seamless deployment.',
+    image: null,
+    tech: ['React js', 'Puck Package', 'Static Site Generation'],
+    status: 'Beta',
+    architecture: ['Dashboard UI', 'Puck Component Library', 'Static Site Generator'],
   },
 ];
 
 export default function Projects() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="projects" className="py-24 bg-brutal-white relative" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="projects" className="relative py-24 lg:py-32 bg-dark-100/50">
+      <div className="absolute inset-0 bg-grid opacity-30" />
+      <div className="section-container relative z-10" ref={ref}>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <h2 className="section-title mb-4">
-            PROJECTS<span className="text-brutal-orange">.</span>
-          </h2>
-          <div className="w-32 h-2 bg-brutal-green mb-12" />
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-12 bg-accent" />
+            <span className="text-accent font-mono text-sm">04. Projects</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-surface">Production Systems</h2>
+          <p className="text-muted mt-3 max-w-xl">
+            Deployable, scalable applications built with modern architecture patterns.
+          </p>
         </motion.div>
 
-        {/* Featured Projects */}
-        <div className="space-y-8">
-          {projects.map((project, index) => (
+        {/* Project Grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {projects.map((project, i) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className={`brutal-border brutal-shadow-lg bg-brutal-white overflow-hidden ${
-                project.featured ? '' : ''
-              }`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 + i * 0.12, duration: 0.5 }}
+              className="glass rounded-xl glow-border glow-border-hover overflow-hidden group transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="grid md:grid-cols-3">
-                {/* Project Visual */}
-                <div
-                  className={`${project.color} p-8 flex flex-col justify-between min-h-[200px] md:min-h-[300px]`}
+              {/* Card Header Bar */}
+              <div className="flex items-center justify-between px-5 py-3 border-b border-white/5">
+                <div className="flex items-center gap-2">
+                  <GitBranch size={14} className="text-accent" />
+                  <span className="text-xs font-mono text-muted">main</span>
+                </div>
+                <span
+                  className={`inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono rounded border ${
+                    project.status === 'Production'
+                      ? 'bg-green-400/10 text-green-400 border-green-400/20'
+                      : project.status === 'Staging'
+                        ? 'bg-yellow-400/10 text-yellow-400 border-yellow-400/20'
+                        : 'bg-accent/10 text-accent border-accent/20'
+                  }`}
                 >
-                  <div>
-                    <span className="font-mono text-xs text-brutal-white/80 uppercase tracking-widest">
-                      {project.date}
-                    </span>
-                    <h3 className="font-display font-black text-2xl md:text-3xl text-brutal-white uppercase mt-2 leading-tight">
-                      {project.title}
-                    </h3>
-                  </div>
+                  <CheckCircle size={10} />
+                  {project.status}
+                </span>
+              </div>
 
-                  {/* Impact Badges */}
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {project.impact.map((imp) => (
-                      <span
-                        key={imp}
-                        className="flex items-center gap-1 bg-brutal-black/20 text-brutal-white px-2 py-1 font-mono text-xs font-bold"
-                      >
-                        <Zap size={10} />
-                        {imp}
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-surface mb-2 group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted text-sm leading-relaxed mb-5">{project.description}</p>
+
+                {/* Mini Architecture */}
+                <div className="flex flex-wrap items-center gap-1 mb-5 text-[10px] font-mono">
+                  {project.architecture.map((node, j) => (
+                    <span key={node} className="flex items-center gap-1">
+                      <span className="px-2 py-1 bg-dark-300/50 text-muted rounded border border-white/5">
+                        {node}
                       </span>
-                    ))}
-                  </div>
+                      {j < project.architecture.length - 1 && (
+                        <span className="text-accent/40">→</span>
+                      )}
+                    </span>
+                  ))}
                 </div>
 
-                {/* Project Details */}
-                <div className="md:col-span-2 p-6 md:p-8 flex flex-col justify-between">
-                  <div>
-                    <p className="text-base leading-relaxed mb-4">{project.longDescription}</p>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="brutal-border px-3 py-1 font-mono text-xs font-bold bg-brutal-gray hover:bg-brutal-yellow transition-colors"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                {/* Tech badges */}
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-1 text-[10px] font-mono text-accent bg-accent/8 rounded border border-accent/15"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
