@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowDown, Mail } from 'lucide-react';
-import { GitHubIcon, LinkedInIcon } from './icons';
+import { GithubIcon, LinkedinIcon } from './icons';
 
 export default function Hero() {
   return (
@@ -118,7 +118,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="brutal-border p-2 hover:bg-brutal-dark hover:text-brutal-white transition-colors"
               >
-                <GitHubIcon size={20} />
+                <GithubIcon size={20} />
               </a>
               <a
                 href="https://linkedin.com/in/rahul-rajamani"
@@ -126,7 +126,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="brutal-border p-2 hover:bg-brutal-blue hover:text-brutal-white transition-colors"
               >
-                <LinkedInIcon size={20} />
+                <LinkedinIcon size={20} />
               </a>
               <a
                 href="mailto:rahulrajamani310702@gmail.com"
